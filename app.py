@@ -4,8 +4,9 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load trained model
+# Load the trained model and scaler
 model = joblib.load("sepsis_model.pkl")
+scaler = joblib.load("scaler.pkl")
 
 @app.route('/')
 def home():
@@ -13,10 +14,11 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.json
-    features = np.array([data["HeartRate"], data["RespRate"], data["Temp"], data["WBC"], data["Lactate"]]).reshape(1, -1)
-    prediction = model.predict(features)
-    return jsonify({"sepsis_risk": int(prediction[0])})
+    data = request.get_json()
+    features = np.array([data.values()]).reshape(1, -1)
+    scaled_features = scaler.transform(features)
+    prediction = model.predict(scaled_features)[0]
+    return jsonify({'sepsis_risk': int(prediction)})
 
 if __name__ == '__main__':
     app.run(debug=True)
