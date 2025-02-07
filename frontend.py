@@ -4,7 +4,7 @@ import requests
 st.title("Sepsis Early Warning System")
 
 # User input fields
-heart_rate = st.number_input("Heart Rate", min_value=40, max_value=180, value=80)
+heart_rate = st.number_input("Heart Rate", min_value=40, max_value=180, value="Enter the Value")
 resp_rate = st.number_input("Respiratory Rate", min_value=10, max_value=40, value=20)
 temp = st.number_input("Body Temperature (°C)", min_value=35.0, max_value=42.0, value=37.0)
 wbc = st.number_input("White Blood Cell Count (WBC)", min_value=3000, max_value=20000, value=7000)
