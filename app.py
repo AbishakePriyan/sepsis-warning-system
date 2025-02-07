@@ -4,21 +4,26 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load the trained model and scaler
-model = joblib.load("sepsis_model.pkl")
-scaler = joblib.load("scaler.pkl")
+# Load model and scaler
+try:
+    model = joblib.load("sepsis_model.pkl")
+    scaler = joblib.load("scaler.pkl")
+except:
+    model, scaler = None, None
 
-@app.route('/')
-def home():
-    return "Sepsis Prediction API is running!"
-
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def predict():
-    data = request.get_json()
-    features = np.array([data.values()]).reshape(1, -1)
-    scaled_features = scaler.transform(features)
-    prediction = model.predict(scaled_features)[0]
-    return jsonify({'sepsis_risk': int(prediction)})
+    if not model or not scaler:
+        return jsonify({"error": "Model not loaded"}), 500
 
-if __name__ == '__main__':
+    try:
+        data = request.json
+        features = np.array([[data["HeartRate"], data["RespRate"], data["Temp"], data["WBC"], data["Lactate"]]])
+        scaled_features = scaler.transform(features)
+        prediction = model.predict(scaled_features)[0]
+        return jsonify({"sepsis_risk": int(prediction)})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+if __name__ == "__main__":
     app.run(debug=True)

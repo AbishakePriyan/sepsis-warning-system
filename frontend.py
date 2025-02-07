@@ -13,7 +13,7 @@ lactate = st.number_input("Lactate Level", min_value=0.5, max_value=5.0, value=1
 # Predict button
 if st.button("Check Sepsis Risk"):
     data = {"HeartRate": heart_rate, "RespRate": resp_rate, "Temp": temp, "WBC": wbc, "Lactate": lactate}
-    response = requests.post("https://your-flask-api.onrender.com/predict", json=data)
+    response = requests.post("https://sepsis-warning-system-1.onrender.com", json=data)
     prediction = response.json()["sepsis_risk"]
 
     if prediction == 1:
