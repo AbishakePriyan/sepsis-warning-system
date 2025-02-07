@@ -37,7 +37,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy:.2f}")
 
 # Save the trained model and scaler for future use
-joblib.dump(model, "sepsis_model.pkl")
-joblib.dump(scaler, "scaler.pkl")
+joblib.dump(model, "sepsis_model.pkl", compress=3)
+joblib.dump(scaler, "scaler.pkl", compress=3)
 
 print("✅ Model and scaler saved successfully!")
