@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sepsis Early Warning System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Sepsis Early Warning System</h1>
+    <form id="sepsisForm">
+      <label for="heartRate">Heart Rate (bpm):</label>
+      <input type="number" id="heartRate" name="heartRate" required>
+      
+      <label for="respRate">Respiratory Rate (breaths/min):</label>
+      <input type="number" id="respRate" name="respRate" required>
+      
+      <label for="temperature">Temperature (°C):</label>
+      <input type="number" step="0.1" id="temperature" name="temperature" required>
+      
+      <label for="wbc">White Blood Cell Count:</label>
+      <input type="number" id="wbc" name="wbc" required>
+      
+      <label for="lactate">Lactate Level (mmol/L):</label>
+      <input type="number" step="0.1" id="lactate" name="lactate" required>
+      
+      <button type="submit">Predict Sepsis Risk</button>
+    </form>
+    <div id="result"></div>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

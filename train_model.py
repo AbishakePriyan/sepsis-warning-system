@@ -6,38 +6,34 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import joblib
 
-# Load the dataset
-df = pd.read_csv("synthetic_sepsis_data.csv")  # Make sure this file is in the same directory
+# Load your dataset (use your own file or synthetic data)
+df = pd.read_csv("synthetic_sepsis_data.csv")  # Replace with your dataset file
 
-# Drop unnecessary columns if any (e.g., PatientID, Timestamp)
-df = df.drop(columns=['PatientID', 'Timestamp'], errors='ignore')
-
-# Fill missing values with column mean
+# Example: drop unnecessary columns and fill missing values
 df = df.fillna(df.mean())
 
-# Define features (X) and target (y)
-X = df.drop(columns=['SepsisLabel'])  # Feature columns
-y = df['SepsisLabel']  # Target column
+# Define features and target
+X = df[['HeartRate', 'RespRate', 'Temp', 'WBC', 'Lactate']]
+y = df['SepsisLabel']  # Ensure your dataset has this column
 
-# Split data into training and testing sets (80% training, 20% testing)
+# Split into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Scale the features (important for ML models)
+# Scale the features
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Train the model (Random Forest Classifier)
+# Train the model (using RandomForest as an example)
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_scaled, y_train)
 
-# Evaluate model accuracy
+# Evaluate the model
 y_pred = model.predict(X_test_scaled)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy:.2f}")
 
-# Save the trained model and scaler for future use
-joblib.dump(model, "sepsis_model.pkl", compress=3)
-joblib.dump(scaler, "scaler.pkl", compress=3)
-
-print("✅ Model and scaler saved successfully!")
+# Save the model and scaler
+joblib.dump(model, "sepsis_model.pkl")
+joblib.dump(scaler, "scaler.pkl")
+print("Trained model and scaler saved successfully!")

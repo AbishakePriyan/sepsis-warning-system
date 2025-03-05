@@ -1,4 +1,4 @@
-flask
+Flask
 streamlit
 joblib
 numpy
@@ -6,3 +6,5 @@ pandas
 scikit-learn
 requests
 gunicorn
+Flask-SQLAlchemy
+numpy
