@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sepsis Alert</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepsis Alert - Home</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-  <header>
-    <a href="/" class="logo">Sepsis Alert</a>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/predict">Predict</a></li>
-        <li><a href="/feedback">Feedback</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1 id="home-logo">Sepsis Alert</h1>
+        <nav>
+            <a href="predict.html">Predict</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+    </header>
 
-  <section class="hero">
-    <h1>Welcome to Sepsis Alert</h1>
-    <p>AI-powered early warning system for sepsis detection.</p>
-    <a href="/predict" class="btn">Get Started</a>
-  </section>
+    <section class="hero">
+        <h2>Early Sepsis Warning System</h2>
+        <p>Enter your medical details to get a risk prediction instantly.</p>
+        <button onclick="window.location.href='/predict'">Get Started</button>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Sepsis Alert. All rights reserved.</p>
-  </footer>
+    <script src="static/script.js"></script>
 </body>
 </html>
