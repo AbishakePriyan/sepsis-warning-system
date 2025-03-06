@@ -3,88 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sepsis Alert - Early Warning System</title>
+  <title>Sepsis Alert</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <header>
-    <!-- Changed logo from a div to an anchor linking to Home -->
-    <a href="#home" class="logo">Sepsis Alert</a>
+    <a href="/" class="logo">Sepsis Alert</a>
     <nav>
       <ul>
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#predict" class="nav-link">Predict</a></li>
-        <li><a href="#feedback" class="nav-link">Feedback</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/feedback">Feedback</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <!-- Home Section -->
-    <section id="home" class="section active">
-      <div class="hero">
-        <h1>Welcome to Sepsis Alert</h1>
-        <p>Your AI-powered early warning system for sepsis.</p>
-        <!-- "Get Started" links directly to the Predict section -->
-        <a href="#predict" class="btn">Get Started</a>
-      </div>
-    </section>
-
-    <!-- Predict Section -->
-    <section id="predict" class="section">
-      <div class="container">
-        <h2>Predict Sepsis Risk</h2>
-        <form id="sepsisForm">
-          <div class="form-group">
-            <label for="heartRate">Heart Rate (bpm):</label>
-            <input type="number" id="heartRate" name="heartRate" required>
-          </div>
-          <div class="form-group">
-            <label for="respRate">Respiratory Rate (breaths/min):</label>
-            <input type="number" id="respRate" name="respRate" required>
-          </div>
-          <div class="form-group">
-            <label for="temperature">Temperature (°C):</label>
-            <input type="number" step="0.1" id="temperature" name="temperature" required>
-          </div>
-          <div class="form-group">
-            <label for="wbc">White Blood Cell Count:</label>
-            <input type="number" id="wbc" name="wbc" required>
-          </div>
-          <div class="form-group">
-            <label for="lactate">Lactate Level (mmol/L):</label>
-            <input type="number" step="0.1" id="lactate" name="lactate" required>
-          </div>
-          <button type="submit">Predict</button>
-        </form>
-        <div id="predictResult" class="result"></div>
-      </div>
-    </section>
-
-    <!-- Feedback Section -->
-    <section id="feedback" class="section">
-      <div class="container">
-        <h2>Feedback</h2>
-        <form id="feedbackForm">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="feedbackText">Feedback:</label>
-            <textarea id="feedbackText" name="feedbackText" rows="4" required></textarea>
-          </div>
-          <button type="submit">Submit Feedback</button>
-        </form>
-        <div id="feedbackResult" class="result"></div>
-      </div>
-    </section>
-  </main>
+  <section class="hero">
+    <h1>Welcome to Sepsis Alert</h1>
+    <p>AI-powered early warning system for sepsis detection.</p>
+    <a href="/predict" class="btn">Get Started</a>
+  </section>
 
   <footer>
     <p>&copy; 2025 Sepsis Alert. All rights reserved.</p>
   </footer>
-
-  <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

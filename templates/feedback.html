@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feedback - Sepsis Alert</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">Sepsis Alert</a>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/predict">Predict</a></li>
+        <li><a href="/feedback" class="active">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="container">
+    <h2>Give us your feedback</h2>
+    <form id="feedbackForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="feedbackText">Feedback:</label>
+        <textarea id="feedbackText" name="feedbackText" rows="4" required></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="feedbackResult" class="result"></div>
+  </section>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
