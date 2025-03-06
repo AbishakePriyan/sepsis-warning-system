@@ -1,43 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sepsis Alert - Predict</title>
-    <link rel="stylesheet" href="static/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sepsis Alert - Predict</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <h1 id="home-logo">Sepsis Alert</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="feedback.html">Feedback</a>
-        </nav>
-    </header>
+  <header>
+    <a href="/" class="logo">Sepsis Alert</a>
+    <nav>
+      <ul>
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/predict" class="nav-link active">Predict</a></li>
+        <li><a href="/feedback" class="nav-link">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
     <section class="form-section">
-        <h2>Sepsis Risk Prediction</h2>
-        <form id="predict-form">
-            <label>Plasma Glucose (PRG): <input type="number" step="0.1" name="PRG" required></label>
-            <label>Blood Work Result-1 (PL): <input type="number" step="0.1" name="PL" required></label>
-            <label>Blood Pressure (PR): <input type="number" step="0.1" name="PR" required></label>
-            <label>Blood Work Result-2 (SK): <input type="number" step="0.1" name="SK" required></label>
-            <label>Blood Work Result-3 (TS): <input type="number" step="0.1" name="TS" required></label>
-            <label>Body Mass Index (M11): <input type="number" step="0.1" name="M11" required></label>
-            <label>Blood Work Result-4 (BD2): <input type="number" step="0.1" name="BD2" required></label>
-            <label>Age: <input type="number" name="Age" required></label>
-            <label>Insurance (1=Yes, 0=No): 
-                <select name="Insurance">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-            </label>
-
-            <button type="submit">Predict Sepsis Risk</button>
-        </form>
-        <p id="prediction-result"></p>
+      <h2>Sepsis Risk Prediction</h2>
+      <form id="predict-form">
+        <label>Plasma Glucose (PRG):
+          <input type="number" step="0.1" name="PRG" required>
+        </label>
+        <label>Blood Work Result-1 (PL):
+          <input type="number" step="0.1" name="PL" required>
+        </label>
+        <label>Blood Pressure (PR):
+          <input type="number" step="0.1" name="PR" required>
+        </label>
+        <label>Blood Work Result-2 (SK):
+          <input type="number" step="0.1" name="SK" required>
+        </label>
+        <label>Blood Work Result-3 (TS):
+          <input type="number" step="0.1" name="TS" required>
+        </label>
+        <label>Body Mass Index (M11):
+          <input type="number" step="0.1" name="M11" required>
+        </label>
+        <label>Blood Work Result-4 (BD2):
+          <input type="number" step="0.1" name="BD2" required>
+        </label>
+        <label>Age:
+          <input type="number" name="Age" required>
+        </label>
+        <label>Insurance (1 = Yes, 0 = No):
+          <select name="Insurance" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </label>
+        <button type="submit">Submit Prediction</button>
+      </form>
+      <div id="prediction-result" class="result" style="display:none;"></div>
     </section>
+  </main>
 
-    <script src="static/script.js"></script>
+  <footer>
+    <p>&copy; 2025 Sepsis Alert. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
